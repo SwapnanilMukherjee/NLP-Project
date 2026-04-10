@@ -1,0 +1,79 @@
+{
+  "post_count": 27219,
+  "topic_count": 10,
+  "subreddit": "gradadmissions",
+  "top_terms": [
+    [
+      "phd",
+      15127
+    ],
+    [
+      "program",
+      11424
+    ],
+    [
+      "research",
+      9402
+    ],
+    [
+      "programs",
+      8396
+    ],
+    [
+      "school",
+      7458
+    ],
+    [
+      "i'm",
+      6920
+    ],
+    [
+      "university",
+      6905
+    ],
+    [
+      "interview",
+      6739
+    ],
+    [
+      "application",
+      6034
+    ],
+    [
+      "applied",
+      5748
+    ],
+    [
+      "year",
+      5657
+    ],
+    [
+      "applying",
+      5216
+    ],
+    [
+      "experience",
+      4995
+    ],
+    [
+      "time",
+      4803
+    ],
+    [
+      "work",
+      4561
+    ]
+  ],
+  "methods": {
+    "topic_extraction": "SentenceTransformer embeddings + MiniBatchKMeans clustering + spaCy noun-chunk/entity candidates + phrase-filtered c-TF-IDF keywording with embedding reranking",
+    "trend_labeling": "weekly topic-share time-series with recency lift and slope heuristics",
+    "stance_detection": "transformer NLI with agree/disagree hypothesis templates over comment/claim pairs",
+    "summarization": "instruction-tuned causal LM summaries over stance-grouped comments",
+    "user_grouping": "per-topic majority vote over model-based comment stances"
+  },
+  "models": {
+    "topic_embedding_model": "BAAI/bge-base-en-v1.5",
+    "stance_nli_model": "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+    "generation_model": "Qwen/Qwen2.5-3B-Instruct"
+  }
+}
