@@ -1,0 +1,110 @@
+[
+  {
+    "id": "qa01",
+    "type": "factual_community",
+    "question": "What is the main theme of r/gradadmissions in this corpus?",
+    "reference_answer": "The corpus is mainly about graduate admissions: applicants discuss PhD and master's applications, profiles, program choices, interviews, decisions, funding, rejection, waitlists, and application documents."
+  },
+  {
+    "id": "qa02",
+    "type": "factual_community",
+    "question": "What kinds of application documents do users frequently ask about?",
+    "reference_answer": "Users frequently ask about statements of purpose or personal statements, recommendation letters, CVs or resumes, transcripts, GRE/GPA information, and school-specific application materials."
+  },
+  {
+    "id": "qa03",
+    "type": "factual_community",
+    "question": "What is GradCafe typically used for in these discussions?",
+    "reference_answer": "GradCafe is discussed as a place to track admissions decisions, interview reports, rejections, acceptances, and timing, while users also note that it can increase anxiety or be incomplete."
+  },
+  {
+    "id": "qa04",
+    "type": "factual_community",
+    "question": "What information do profile review posts usually include?",
+    "reference_answer": "Profile review posts usually include GPA, test scores if any, research experience, publications or projects, recommendation strength, intended field, degree target, and a list of universities or programs."
+  },
+  {
+    "id": "qa05",
+    "type": "factual_community",
+    "question": "What stages of the admissions cycle appear in the subreddit?",
+    "reference_answer": "The corpus includes preparing applications, submitting materials, interviews, waiting for decisions, acceptances, rejections, waitlists, funding offers, and choosing between programs."
+  },
+  {
+    "id": "qa06",
+    "type": "opinion_summary",
+    "question": "What do users think matters most for PhD admissions?",
+    "reference_answer": "Users emphasize research fit, prior research experience, strong letters, a focused statement of purpose, and advisor or program fit. GPA matters, but commenters often treat it as one part of a broader profile."
+  },
+  {
+    "id": "qa07",
+    "type": "opinion_summary",
+    "question": "How do users talk about low GPA applications?",
+    "reference_answer": "The discussion is mixed: users worry that low GPA hurts applications, but commenters suggest offsetting it with research experience, strong recommendations, context, clear fit, and realistic school lists."
+  },
+  {
+    "id": "qa08",
+    "type": "opinion_summary",
+    "question": "What advice do users give for graduate interviews?",
+    "reference_answer": "Common advice is to know one's research interests, explain fit with faculty or labs, prepare to discuss past projects, ask informed questions, stay professional, and treat interviews as mutual fit checks."
+  },
+  {
+    "id": "qa09",
+    "type": "opinion_summary",
+    "question": "What do users think about unfunded or very expensive offers?",
+    "reference_answer": "Many users are cautious about unfunded or expensive offers, especially for PhD study or high-cost master's programs. They discuss debt, return on investment, assistantships, scholarships, and cheaper funded options."
+  },
+  {
+    "id": "qa10",
+    "type": "opinion_summary",
+    "question": "How do users describe the emotional experience of rejection or waiting?",
+    "reference_answer": "Users describe anxiety, uncertainty, disappointment, self-doubt, and frustration while waiting or after rejection. Replies often normalize rejection and encourage applicants to focus on remaining options."
+  },
+  {
+    "id": "qa11",
+    "type": "opinion_summary",
+    "question": "What concerns do international applicants raise?",
+    "reference_answer": "International applicants raise concerns about funding, visa timing, program reputation, country choice, cost of attendance, department communication, and how their GPA or institution will be evaluated."
+  },
+  {
+    "id": "qa12",
+    "type": "opinion_summary",
+    "question": "What do users say about contacting professors before applying?",
+    "reference_answer": "Users frame professor contact as field- and program-dependent. It is often useful for PhD or research-based applications when the email is concise, specific, and tied to genuine research fit, but it is not always required."
+  },
+  {
+    "id": "qa13",
+    "type": "opinion_summary",
+    "question": "How are MSCS or master's program choices discussed?",
+    "reference_answer": "MSCS and master's discussions compare university reputation, course fit, cost, location, job outcomes, scholarship chances, and admit decisions, with users asking whether a program is worth the price."
+  },
+  {
+    "id": "qa14",
+    "type": "adversarial_absent",
+    "question": "What is the official acceptance rate for every r/gradadmissions user in the 2026 cycle?",
+    "reference_answer": "The corpus does not contain official acceptance rates for every user, so a faithful answer should say that the information is not available from the retrieved Reddit data."
+  },
+  {
+    "id": "qa15",
+    "type": "adversarial_absent",
+    "question": "Which exact applicant from the corpus was admitted to Stanford, and what is their real identity?",
+    "reference_answer": "The corpus should not be used to identify a real person, and the retrieved Reddit data is insufficient for verifying an exact applicant's real identity or Stanford admission status."
+  },
+  {
+    "id": "qa16",
+    "type": "factual_community",
+    "question": "What role do recommendation letters play in these discussions?",
+    "reference_answer": "Recommendation letters are usually treated as highly important, especially for PhD admissions. Users often discuss whether their recommenders know them well, how strong the letters might be, and whether generic letters weaken an otherwise solid profile."
+  },
+  {
+    "id": "qa17",
+    "type": "opinion_summary",
+    "question": "How do users talk about emailing departments when materials are missing or delayed?",
+    "reference_answer": "Users generally recommend polite, concise emails to departments when transcripts, letters, or portals show missing items. The advice is to verify facts, avoid spamming, and contact the program only when there is a concrete issue to resolve."
+  },
+  {
+    "id": "qa18",
+    "type": "opinion_summary",
+    "question": "How do users decide between multiple admits?",
+    "reference_answer": "Users usually compare research or course fit, funding, tuition, city, advisor compatibility, career outcomes, and long-term goals when deciding between admits. They often warn against choosing only by prestige if the cost or fit is poor."
+  }
+]

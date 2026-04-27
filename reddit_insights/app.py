@@ -5,9 +5,9 @@ import json
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-from sqlalchemy import func, select, union
+from sqlalchemy import and_, func, select, union
 
-from reddit_insights.config import settings
+from reddit_insights.config import PART2_REPORTS_DIR, RAG_INDEX_DIR, settings
 from reddit_insights.db import SessionLocal
 from reddit_insights.models import Comment, CommentStance, Post, RedditUser, Subreddit, Topic, TopicAssignment, TopicUserStance, TopicWeeklyMetric
 
@@ -97,15 +97,27 @@ def load_weekly_metrics(session, topic_id: int) -> pd.DataFrame:
 
 
 
-def load_top_posts(session, topic_id: int) -> pd.DataFrame:
+def load_top_posts(session, topic_id: int, limit: int = 15) -> pd.DataFrame:
     rows = session.execute(
-        select(Post.title, Post.score, Post.num_comments, Post.created_utc, TopicAssignment.weight)
+        select(
+            Post.id,
+            Post.title,
+            Post.selftext,
+            Post.score,
+            Post.num_comments,
+            Post.created_utc,
+            Post.permalink,
+            TopicAssignment.weight,
+        )
         .join(TopicAssignment, TopicAssignment.post_id == Post.id)
         .where(TopicAssignment.topic_id == topic_id)
         .order_by(TopicAssignment.weight.desc(), Post.score.desc())
-        .limit(15)
+        .limit(limit)
     ).all()
-    return pd.DataFrame(rows, columns=["title", "score", "num_comments", "created_utc", "topic_weight"])
+    return pd.DataFrame(
+        rows,
+        columns=["post_id", "title", "selftext", "score", "num_comments", "created_utc", "permalink", "topic_weight"],
+    )
 
 
 
@@ -120,23 +132,132 @@ def load_stance_breakdown(session, topic_id: int) -> pd.DataFrame:
 
 
 def load_user_stance_groups(session, topic_id: int) -> pd.DataFrame:
+    representative_comment_subquery = (
+        select(
+            TopicUserStance.user_id.label("user_id"),
+            TopicUserStance.topic_id.label("topic_id"),
+            Comment.body.label("representative_comment"),
+            func.row_number().over(
+                partition_by=(TopicUserStance.user_id, TopicUserStance.topic_id),
+                order_by=(
+                    CommentStance.confidence.desc(),
+                    Comment.score.desc(),
+                    Comment.created_utc.desc(),
+                    Comment.id.desc(),
+                ),
+            ).label("row_num"),
+        )
+        .join(Comment, Comment.author_id == TopicUserStance.user_id)
+        .join(
+            CommentStance,
+            and_(
+                CommentStance.comment_id == Comment.id,
+                CommentStance.topic_id == TopicUserStance.topic_id,
+                CommentStance.stance == TopicUserStance.stance,
+            ),
+        )
+        .where(TopicUserStance.topic_id == topic_id)
+        .subquery()
+    )
+
     rows = session.execute(
         select(
             RedditUser.username,
             TopicUserStance.stance,
-            TopicUserStance.comment_count,
             TopicUserStance.avg_confidence,
+            representative_comment_subquery.c.representative_comment,
         )
         .join(RedditUser, TopicUserStance.user_id == RedditUser.id)
+        .outerjoin(
+            representative_comment_subquery,
+            and_(
+                representative_comment_subquery.c.user_id == TopicUserStance.user_id,
+                representative_comment_subquery.c.topic_id == TopicUserStance.topic_id,
+                representative_comment_subquery.c.row_num == 1,
+            ),
+        )
         .where(TopicUserStance.topic_id == topic_id)
-        .order_by(TopicUserStance.stance.asc(), TopicUserStance.comment_count.desc(), RedditUser.username.asc())
+        .order_by(TopicUserStance.stance.asc(), TopicUserStance.avg_confidence.desc(), RedditUser.username.asc())
     ).all()
-    return pd.DataFrame(rows, columns=["username", "stance", "comment_count", "avg_confidence"])
+    return pd.DataFrame(rows, columns=["username", "stance", "avg_confidence", "representative_comment"])
 
 
 
 def load_topic_record(session, topic_id: int) -> Topic:
     return session.get(Topic, topic_id)
+
+
+
+def format_timestamp(value) -> str:
+    if pd.isna(value):
+        return "-"
+    return pd.to_datetime(value).strftime("%Y-%m-%d")
+
+
+
+def truncate_text(value: str, limit: int = 100) -> str:
+    clean = (value or "").strip()
+    if len(clean) <= limit:
+        return clean or "(untitled)"
+    return clean[: limit - 1].rstrip() + "…"
+
+
+
+def render_post_rows(posts_df: pd.DataFrame, key_prefix: str) -> None:
+    if posts_df.empty:
+        st.info("No representative posts were available for this topic.")
+        return
+
+    header_cols = st.columns([5, 1, 1, 1, 1])
+    header_cols[0].write("**Title**")
+    header_cols[1].write("**Score**")
+    header_cols[2].write("**Comments**")
+    header_cols[3].write("**Created**")
+    header_cols[4].write("**Weight**")
+
+    for row in posts_df.itertuples(index=False):
+        row_cols = st.columns([5, 1, 1, 1, 1])
+        title_label = truncate_text(str(row.title), 110)
+        with row_cols[0].popover(title_label, key=f"{key_prefix}-post-{row.post_id}", use_container_width=True):
+            st.markdown(f"**{row.title or '(untitled)'}**")
+            if str(row.selftext or "").strip():
+                st.write(row.selftext)
+            else:
+                st.caption("No body text available for this post.")
+            if str(row.permalink or "").strip():
+                st.caption(row.permalink)
+        row_cols[1].write(int(row.score or 0))
+        row_cols[2].write(int(row.num_comments or 0))
+        row_cols[3].write(format_timestamp(row.created_utc))
+        row_cols[4].write(f"{float(row.topic_weight or 0.0):.3f}")
+
+
+
+def render_topic_overview(topics_df: pd.DataFrame) -> int | None:
+    header_cols = st.columns([1, 3, 1.5, 1, 3, 1.5])
+    header_cols[0].write("**Topic #**")
+    header_cols[1].write("**Label**")
+    header_cols[2].write("**Type**")
+    header_cols[3].write("**Share**")
+    header_cols[4].write("**Keywords**")
+    header_cols[5].write("**Dominant stance**")
+
+    for row in topics_df.itertuples(index=False):
+        row_cols = st.columns([1, 3, 1.5, 1, 3, 1.5])
+        row_cols[0].write(int(row.topic_index))
+        if row_cols[1].button(
+            str(row.label),
+            key=f"topic-overview-{row.topic_id}",
+            type="tertiary",
+            use_container_width=True,
+        ):
+            st.session_state["overview_topic_id"] = int(row.topic_id)
+        row_cols[2].write(str(row.topic_type).title())
+        row_cols[3].write(f"{float(row.share_pct):.1f}%")
+        row_cols[4].write(str(row.keywords_display))
+        row_cols[5].write(str(row.dominant_stance).replace("_", " ").title())
+
+    return st.session_state.get("overview_topic_id")
 
 
 
@@ -174,11 +295,27 @@ def main() -> None:
         topics_df["share_pct"] = topics_df["share_of_posts"] * 100
 
         st.subheader("Topic Overview")
-        st.dataframe(
-            topics_df[["topic_index", "label", "topic_type", "share_pct", "keywords_display", "dominant_stance"]],
-            use_container_width=True,
-            hide_index=True,
+        st.caption("Click a topic label to inspect its top posts and open full post bodies.")
+        overview_topic_id = render_topic_overview(
+            topics_df[["topic_id", "topic_index", "label", "topic_type", "share_pct", "keywords_display", "dominant_stance"]]
         )
+
+        if overview_topic_id is not None and int(overview_topic_id) in topics_df["topic_id"].tolist():
+            overview_topic = topics_df[topics_df["topic_id"] == int(overview_topic_id)].iloc[0]
+            st.write(f"**Top posts for topic:** {overview_topic['label']}")
+            st.caption(
+                f"{overview_topic['topic_type'].title()} topic • {overview_topic['share_pct']:.1f}% of posts • click a title to view the full body."
+            )
+            st.write(f"**Keywords:** {overview_topic['keywords_display']}")
+            overview_top_k = st.number_input(
+                "Top posts to show for the selected topic",
+                min_value=5,
+                max_value=50,
+                value=int(st.session_state.get("overview_topic_top_k", 20)),
+                key="overview_topic_top_k",
+            )
+            overview_posts_df = load_top_posts(session, int(overview_topic_id), limit=int(overview_top_k))
+            render_post_rows(overview_posts_df, key_prefix=f"overview-topic-{int(overview_topic_id)}")
 
         col1, col2 = st.columns(2)
         with col1:
@@ -224,7 +361,8 @@ def main() -> None:
 
         top_posts_df = load_top_posts(session, topic_id)
         st.write("**Representative posts**")
-        st.dataframe(top_posts_df, use_container_width=True, hide_index=True)
+        st.caption("Click a title to view the full post body.")
+        render_post_rows(top_posts_df, key_prefix=f"drilldown-topic-{topic_id}")
 
         stance_df = load_stance_breakdown(session, topic_id)
         st.write("**Agreement vs disagreement**")
@@ -244,18 +382,28 @@ def main() -> None:
                 px.bar(user_count_df, x="stance", y="users", title="Users grouped by stance"),
                 use_container_width=True,
             )
+            display_user_groups_df = user_groups_df.copy()
+            display_user_groups_df["avg_confidence"] = display_user_groups_df["avg_confidence"].round(3)
             agreement_cols = st.columns(2)
             agreement_cols[0].write("**Agreement-side users**")
             agreement_cols[0].dataframe(
-                user_groups_df[user_groups_df["stance"] == "support"].head(20),
+                display_user_groups_df[display_user_groups_df["stance"] == "support"].head(20),
                 use_container_width=True,
                 hide_index=True,
+                column_config={
+                    "representative_comment": st.column_config.TextColumn("Representative comment", width="large"),
+                    "avg_confidence": st.column_config.NumberColumn("Avg confidence", format="%.3f"),
+                },
             )
             agreement_cols[1].write("**Disagreement-side users**")
             agreement_cols[1].dataframe(
-                user_groups_df[user_groups_df["stance"] == "oppose"].head(20),
+                display_user_groups_df[display_user_groups_df["stance"] == "oppose"].head(20),
                 use_container_width=True,
                 hide_index=True,
+                column_config={
+                    "representative_comment": st.column_config.TextColumn("Representative comment", width="large"),
+                    "avg_confidence": st.column_config.NumberColumn("Avg confidence", format="%.3f"),
+                },
             )
         else:
             st.info("No user-level stance groups were available for this topic.")
@@ -265,3 +413,46 @@ def main() -> None:
         summary_cols[0].write(topic_record.support_summary or "No clear arguments detected.")
         summary_cols[1].write("**Disagreement-side arguments**")
         summary_cols[1].write(topic_record.oppose_summary or "No clear arguments detected.")
+
+        st.divider()
+        st.subheader("Part 2: RAG Conversation System")
+        st.caption("Ask questions over the stored Reddit corpus using the local RAG index and either Groq or Gemini as the generation endpoint.")
+
+        metadata_path = RAG_INDEX_DIR / "metadata.json"
+        if metadata_path.exists():
+            st.success(f"RAG index found at `{RAG_INDEX_DIR}`.")
+        else:
+            st.warning("No RAG index found. Run `python -m reddit_insights.cli part2-build-index --subreddit gradadmissions` first.")
+
+        rag_query = st.text_area("Question", placeholder="What do users say matters most for PhD admissions?")
+        rag_cols = st.columns([1, 1, 2])
+        provider_name = rag_cols[0].selectbox("Provider", ["groq", "gemini"])
+        top_k = rag_cols[1].number_input("Retrieved snippets", min_value=3, max_value=15, value=settings.rag_top_k)
+
+        if st.button("Answer with RAG", disabled=not metadata_path.exists() or not rag_query.strip()):
+            try:
+                from reddit_insights.llm_providers import build_provider
+                from reddit_insights.rag import RagIndex, answer_question
+
+                rag_result = answer_question(
+                    build_provider(provider_name),
+                    rag_query,
+                    index=RagIndex(),
+                    top_k=int(top_k),
+                )
+                st.write(rag_result.answer)
+                with st.expander("Retrieved evidence"):
+                    for item in rag_result.retrieved:
+                        doc = item.document
+                        st.write(f"**[{item.rank}] {doc.source_type} | {doc.topic_label} | score={item.score:.3f}**")
+                        st.write(doc.title)
+                        st.caption(doc.text[:800])
+            except Exception as exc:
+                st.error(f"RAG answer failed: {exc}")
+
+        report_path = PART2_REPORTS_DIR / "part2_report.md"
+        if report_path.exists():
+            with st.expander("Generated Part 2 report"):
+                st.markdown(report_path.read_text(encoding="utf-8"))
+        else:
+            st.info("Run the Part 2 evaluation commands to generate report files under `data/part2/reports`.")

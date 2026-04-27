@@ -9,6 +9,7 @@ This project implements the assignment pipeline from `NLP_proj_1.pdf` with Arcti
 - classify topic-linked comments as supporting or opposing the dominant position
 - summarize the main arguments made by each side
 - expose everything in an interactive Streamlit application
+- implement Part 2 RAG question answering, LLM comparison, Hindi translation evaluation, bias probes, and ethics/report notes
 
 ## Design choices
 
@@ -18,6 +19,7 @@ This project implements the assignment pipeline from `NLP_proj_1.pdf` with Arcti
 - Topic extraction uses transformer sentence embeddings with MiniBatchKMeans clustering, plus spaCy noun-chunk/entity candidates combined with phrase-filtered c-TF-IDF and embedding reranking, followed by generated labels.
 - Trending vs persistent topics are derived from weekly topic-share trajectories using recency lift and slope over time.
 - Stance uses a transformer NLI model with explicit agree/disagree hypothesis templates over topic-linked comments and generated topic claims. Summaries and topic labels come from an instruction-tuned causal LM running on the GPU.
+- Part 2 uses a local RAG index over stored posts/comments and calls two external API inference providers, Groq and Gemini, for comparative generation.
 
 ## Current NLP pipeline
 
@@ -128,6 +130,102 @@ Launch the app:
 source bin/activate
 streamlit run app.py
 ```
+
+## Part 2: RAG, LLM Evaluation, Hindi Translation, Bias, Ethics
+
+Part 2 is implemented as an extension over the same SQLite repository and uses SQLAlchemy for all database access. It does not require Reddit API credentials.
+
+### API providers
+
+Add the two provider keys to `.env`:
+
+```bash
+GROQ_API_KEY=...
+GOOGLE_API_KEY=...
+```
+
+Default API generation models:
+
+- Groq: `llama-3.3-70b-versatile`
+- Gemini: `gemini-2.5-flash`
+
+You can override them with `GROQ_MODEL` and `GEMINI_MODEL`.
+
+### RAG system
+
+The RAG index chunks posts and comments, embeds them with `BAAI/bge-base-en-v1.5`, stores normalized vectors under `data/part2/rag_index`, retrieves by cosine similarity, and sends the retrieved snippets as grounded context to Groq or Gemini.
+
+Build the index:
+
+```bash
+source bin/activate
+python -m reddit_insights.cli part2-build-index --subreddit gradadmissions --force
+```
+
+Ask one question:
+
+```bash
+source bin/activate
+python -m reddit_insights.cli part2-ask \
+  --provider groq \
+  --query "What do users say matters most for PhD admissions?"
+```
+
+### Evaluation sets
+
+Write the reference files:
+
+```bash
+source bin/activate
+python -m reddit_insights.cli part2-init-eval
+```
+
+This creates:
+
+- `data/part2/eval/qa_eval_set.json`: 18 QA examples, including factual, opinion-summary, and adversarial absent-answer questions
+- `data/part2/eval/hindi_translation_eval_set.json`: 24 English-to-Hindi reference translations with named entities, slang, code-mixing, and admissions acronyms
+- `data/part2/eval/hindi_cross_lingual_qa_eval_set.json`: 20 Hindi questions answered from the English Reddit corpus via RAG
+- `data/part2/eval/hindi_summarization_eval_set.json`: 20 Hindi topic-summary references generated from English Reddit context
+- `data/part2/eval/hindi_code_mixed_normalization_eval_set.json`: 20 Hinglish-to-clean-Hindi normalization examples as the extra creative experiment
+- `data/part2/eval/bias_probes.json`: custom bias probes for prestige, international status, socioeconomic assumptions, GPA, and Reddit-demographic bias
+
+### Run Part 2 evaluations
+
+Full assignment run:
+
+```bash
+source bin/activate
+python -m reddit_insights.cli part2-run-all --subreddit gradadmissions --force-index
+```
+
+Individual commands:
+
+```bash
+source bin/activate
+python -m reddit_insights.cli part2-evaluate-qa --providers groq gemini
+python -m reddit_insights.cli part2-evaluate-translation --providers groq gemini
+python -m reddit_insights.cli part2-write-notes --providers groq gemini
+python -m reddit_insights.cli part2-report
+```
+
+For quick smoke tests that avoid the expensive BERTScore pass:
+
+```bash
+source bin/activate
+python -m reddit_insights.cli part2-run-all --limit 1 --index-limit 100 --force-index --skip-bertscore
+```
+
+### Generated Part 2 artifacts
+
+- `data/part2/reports/qa_results.csv` and `qa_summary.csv`: ROUGE-L, BERTScore F1, and faithfulness flags per provider
+- `data/part2/reports/qa_manual_faithfulness_review.csv`: fill `faithful_manual` with `1` or `0` if you want manual faithfulness percentages to override the automatic citation/absence heuristic
+- `data/part2/reports/hindi_suite_results.csv` and `hindi_suite_summary.csv`: chrF, multilingual BERTScore F1, and manual fluency/adequacy columns across translation, cross-lingual QA, summarisation, and Hinglish normalization
+- `data/part2/reports/hindi_suite_overall_summary.csv`: overall provider-level Hindi-task comparison
+- `data/part2/reports/hindi_suite_manual_review.csv`: fill `fluency_1_to_5` and `adequacy_1_to_5` for 5-10 outputs or more
+- `data/part2/reports/hindi_suite_edge_analysis.csv`: metrics broken down by difficult-case tags
+- `data/part2/reports/bias_note.md`: probe-based bias note with corpus-grounded model responses
+- `data/part2/reports/ethics_note.md`: re-identification and right-to-be-forgotten reflection
+- `data/part2/reports/part2_report.md`: combined report file
 
 Load a local archive instead of calling Arctic Shift live:
 

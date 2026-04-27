@@ -1,0 +1,212 @@
+[
+  {
+    "id": "hi01",
+    "tags": [
+      "admit",
+      "named_entity"
+    ],
+    "source": "I got an admit from NYU for MSCS, but the cost is scary.",
+    "reference_hindi": "मुझे MSCS के लिए NYU से प्रवेश मिला है, लेकिन खर्च डराने वाला है।"
+  },
+  {
+    "id": "hi02",
+    "tags": [
+      "rejection",
+      "emotion"
+    ],
+    "source": "Three rejections in one week made me question whether I belong in grad school.",
+    "reference_hindi": "एक ही हफ्ते में तीन अस्वीकृतियों ने मुझे यह सोचने पर मजबूर कर दिया कि क्या मैं ग्रैड स्कूल के लायक हूं।"
+  },
+  {
+    "id": "hi03",
+    "tags": [
+      "code_mixed",
+      "slang"
+    ],
+    "source": "Is this profile too mid for top CS PhD programs, or am I overthinking?",
+    "reference_hindi": "क्या यह प्रोफाइल शीर्ष CS PhD कार्यक्रमों के लिए बहुत औसत है, या मैं जरूरत से ज्यादा सोच रहा हूं?"
+  },
+  {
+    "id": "hi04",
+    "tags": [
+      "documents"
+    ],
+    "source": "My recommender uploaded the LoR after the deadline; should I email the department?",
+    "reference_hindi": "मेरे सिफारिशकर्ता ने समय-सीमा के बाद LoR अपलोड किया; क्या मुझे विभाग को ईमेल करना चाहिए?"
+  },
+  {
+    "id": "hi05",
+    "tags": [
+      "interview"
+    ],
+    "source": "The PI asked me about my research fit and why I wanted that lab.",
+    "reference_hindi": "PI ने मुझसे मेरी शोध-फिट और यह पूछा कि मैं उसी लैब में क्यों जाना चाहता हूं।"
+  },
+  {
+    "id": "hi06",
+    "tags": [
+      "funding"
+    ],
+    "source": "An unfunded master's offer is tempting, but taking huge debt feels risky.",
+    "reference_hindi": "बिना फंडिंग वाला मास्टर्स ऑफर आकर्षक है, लेकिन बहुत बड़ा कर्ज लेना जोखिम भरा लगता है।"
+  },
+  {
+    "id": "hi07",
+    "tags": [
+      "named_entity",
+      "choice"
+    ],
+    "source": "Should I choose Purdue with partial funding or USC with better location but higher tuition?",
+    "reference_hindi": "क्या मुझे आंशिक फंडिंग वाले Purdue को चुनना चाहिए या बेहतर स्थान लेकिन अधिक ट्यूशन वाले USC को?"
+  },
+  {
+    "id": "hi08",
+    "tags": [
+      "gradcafe",
+      "slang"
+    ],
+    "source": "GradCafe is stressing me out because everyone seems to have heard back already.",
+    "reference_hindi": "GradCafe मुझे तनाव दे रहा है क्योंकि ऐसा लगता है कि बाकी सबको पहले ही जवाब मिल चुका है।"
+  },
+  {
+    "id": "hi09",
+    "tags": [
+      "profile_review"
+    ],
+    "source": "Profile review: 3.4 GPA, two research projects, no publications, applying to HCI programs.",
+    "reference_hindi": "प्रोफाइल समीक्षा: 3.4 GPA, दो शोध परियोजनाएं, कोई प्रकाशन नहीं, HCI कार्यक्रमों में आवेदन कर रहा हूं।"
+  },
+  {
+    "id": "hi10",
+    "tags": [
+      "waitlist"
+    ],
+    "source": "I was waitlisted by my top choice and do not know whether to accept another offer.",
+    "reference_hindi": "मेरी पहली पसंद ने मुझे वेटलिस्ट कर दिया है और मुझे नहीं पता कि कोई दूसरा ऑफर स्वीकार करूं या नहीं।"
+  },
+  {
+    "id": "hi11",
+    "tags": [
+      "code_mixed",
+      "emotion"
+    ],
+    "source": "Got the W today: funded PhD admit after months of doom-scrolling.",
+    "reference_hindi": "आज जीत मिल गई: महीनों तक चिंता में स्क्रॉल करने के बाद फंडेड PhD प्रवेश मिला।"
+  },
+  {
+    "id": "hi12",
+    "tags": [
+      "sop"
+    ],
+    "source": "My SOP sounds too generic; how do I make it show fit without name-dropping faculty?",
+    "reference_hindi": "मेरा SOP बहुत सामान्य लग रहा है; फैकल्टी के नाम गिनाए बिना मैं उसमें फिट कैसे दिखाऊं?"
+  },
+  {
+    "id": "hi13",
+    "tags": [
+      "international",
+      "visa"
+    ],
+    "source": "As an international student, I am worried about visa timing and proving finances.",
+    "reference_hindi": "एक अंतरराष्ट्रीय छात्र के रूप में मुझे वीजा के समय और वित्तीय प्रमाण दिखाने की चिंता है।"
+  },
+  {
+    "id": "hi14",
+    "tags": [
+      "named_entity",
+      "deadline"
+    ],
+    "source": "UMich says my transcript is missing even though the portal showed it as received last week.",
+    "reference_hindi": "UMich कह रहा है कि मेरी ट्रांसक्रिप्ट गायब है, जबकि पोर्टल ने पिछले सप्ताह उसे प्राप्त दिखाया था।"
+  },
+  {
+    "id": "hi15",
+    "tags": [
+      "slang",
+      "profile_review"
+    ],
+    "source": "Chance me for Fall 2026: strong research, weak GPA, and a very ambitious school list.",
+    "reference_hindi": "Fall 2026 के लिए मेरे अवसर बताइए: शोध मजबूत है, GPA कमजोर है, और स्कूलों की सूची बहुत महत्वाकांक्षी है।"
+  },
+  {
+    "id": "hi16",
+    "tags": [
+      "interview",
+      "email"
+    ],
+    "source": "Should I send a thank-you email after a 20-minute Zoom interview?",
+    "reference_hindi": "क्या मुझे 20 मिनट के Zoom इंटरव्यू के बाद धन्यवाद ईमेल भेजना चाहिए?"
+  },
+  {
+    "id": "hi17",
+    "tags": [
+      "funding",
+      "assistantship"
+    ],
+    "source": "The department said TA assignments are not guaranteed until August.",
+    "reference_hindi": "विभाग ने कहा कि TA असाइनमेंट अगस्त तक गारंटीशुदा नहीं हैं।"
+  },
+  {
+    "id": "hi18",
+    "tags": [
+      "named_entity",
+      "program"
+    ],
+    "source": "I am comparing Columbia Data Science with Georgia Tech OMSCS for career outcomes.",
+    "reference_hindi": "मैं करियर परिणामों के लिए Columbia Data Science और Georgia Tech OMSCS की तुलना कर रहा हूं।"
+  },
+  {
+    "id": "hi19",
+    "tags": [
+      "rejection",
+      "support"
+    ],
+    "source": "A rejection does not mean your profile is worthless; admissions are noisy and fit-dependent.",
+    "reference_hindi": "अस्वीकृति का मतलब यह नहीं कि आपकी प्रोफाइल बेकार है; प्रवेश प्रक्रिया अनिश्चित और फिट पर निर्भर होती है।"
+  },
+  {
+    "id": "hi20",
+    "tags": [
+      "code_mixed",
+      "slang"
+    ],
+    "source": "The portal still says awaiting decision, so I am trying not to spiral.",
+    "reference_hindi": "पोर्टल अभी भी 'निर्णय प्रतीक्षित' दिखा रहा है, इसलिए मैं कोशिश कर रहा हूं कि घबराहट में न फंसूं।"
+  },
+  {
+    "id": "hi21",
+    "tags": [
+      "assistantship",
+      "slang"
+    ],
+    "source": "No TA, no scholarship, just vibes and a massive tuition bill.",
+    "reference_hindi": "न TA है, न छात्रवृत्ति, बस भरोसा है और बहुत भारी ट्यूशन बिल है।"
+  },
+  {
+    "id": "hi22",
+    "tags": [
+      "timeline",
+      "slang"
+    ],
+    "source": "Still ghosted by the portal after my interview, so I do not know if this is a soft reject.",
+    "reference_hindi": "इंटरव्यू के बाद भी पोर्टल से कोई जवाब नहीं आया, इसलिए समझ नहीं आ रहा कि यह छिपी हुई अस्वीकृति है या नहीं।"
+  },
+  {
+    "id": "hi23",
+    "tags": [
+      "named_entity",
+      "research_fit"
+    ],
+    "source": "My undergrad is from a lesser-known college, but my lab work aligns closely with CMU faculty.",
+    "reference_hindi": "मेरा स्नातक एक कम-ज्ञात कॉलेज से है, लेकिन मेरा लैब कार्य CMU की फैकल्टी के शोध से काफी मेल खाता है।"
+  },
+  {
+    "id": "hi24",
+    "tags": [
+      "email",
+      "documents"
+    ],
+    "source": "I do not want to sound desperate, but the portal still shows my SOP as missing.",
+    "reference_hindi": "मैं बहुत उतावला नहीं लगना चाहता, लेकिन पोर्टल अभी भी मेरा SOP गायब दिखा रहा है।"
+  }
+]

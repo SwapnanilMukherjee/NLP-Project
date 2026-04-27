@@ -1,0 +1,182 @@
+[
+  {
+    "id": "hn01",
+    "tags": [
+      "code_mixed",
+      "slang"
+    ],
+    "input_text": "Mera profile thoda mid hai but research fit solid lag raha hai.",
+    "reference_hindi": "मेरी प्रोफाइल थोड़ी औसत है, लेकिन research fit काफी मजबूत लग रहा है।"
+  },
+  {
+    "id": "hn02",
+    "tags": [
+      "code_mixed",
+      "funding"
+    ],
+    "input_text": "Admit mil gaya, par funding zero hai so scene risky lag raha hai.",
+    "reference_hindi": "प्रवेश मिल गया है, लेकिन funding बिल्कुल नहीं है, इसलिए स्थिति जोखिम भरी लग रही है।"
+  },
+  {
+    "id": "hn03",
+    "tags": [
+      "code_mixed",
+      "documents"
+    ],
+    "input_text": "Portal bol raha hai transcript missing hai even though maine last week upload kiya tha.",
+    "reference_hindi": "पोर्टल कह रहा है कि transcript गायब है, जबकि मैंने उसे पिछले हफ्ते अपलोड किया था।"
+  },
+  {
+    "id": "hn04",
+    "tags": [
+      "code_mixed",
+      "gradcafe"
+    ],
+    "input_text": "GradCafe dekh dekh ke anxiety max ho rahi hai.",
+    "reference_hindi": "GradCafe बार-बार देखने से चिंता बहुत बढ़ रही है।"
+  },
+  {
+    "id": "hn05",
+    "tags": [
+      "code_mixed",
+      "interview"
+    ],
+    "input_text": "PI ne bola project interesting hai but mujhe fit aur clear dikhana hoga.",
+    "reference_hindi": "PI ने कहा कि परियोजना रोचक है, लेकिन मुझे अपना fit और स्पष्ट रूप से दिखाना होगा।"
+  },
+  {
+    "id": "hn06",
+    "tags": [
+      "code_mixed",
+      "email"
+    ],
+    "input_text": "Dept ko mail karun ya fir aur wait karun?",
+    "reference_hindi": "क्या मुझे विभाग को ईमेल करना चाहिए या थोड़ा और इंतजार करना चाहिए?"
+  },
+  {
+    "id": "hn07",
+    "tags": [
+      "code_mixed",
+      "rejection"
+    ],
+    "input_text": "Do rejects back to back aaye aur confidence hit ho gaya.",
+    "reference_hindi": "लगातार दो रिजेक्शन आए और आत्मविश्वास को चोट पहुंची।"
+  },
+  {
+    "id": "hn08",
+    "tags": [
+      "code_mixed",
+      "school_list"
+    ],
+    "input_text": "Meri school list shayad bahut ambitious ho gayi hai.",
+    "reference_hindi": "शायद मेरी school list बहुत अधिक महत्वाकांक्षी हो गई है।"
+  },
+  {
+    "id": "hn09",
+    "tags": [
+      "code_mixed",
+      "letters"
+    ],
+    "input_text": "Strong LoR hai but GPA average hai, to chance kaisa hai?",
+    "reference_hindi": "LoR मजबूत है, लेकिन GPA औसत है; ऐसे में अवसर कैसा है?"
+  },
+  {
+    "id": "hn10",
+    "tags": [
+      "code_mixed",
+      "waitlist"
+    ],
+    "input_text": "Top choice ne waitlist kar diya, ab dusra offer accept karun kya?",
+    "reference_hindi": "मेरी पहली पसंद ने मुझे वेटलिस्ट कर दिया है; अब क्या मुझे दूसरा ऑफर स्वीकार कर लेना चाहिए?"
+  },
+  {
+    "id": "hn11",
+    "tags": [
+      "code_mixed",
+      "named_entity"
+    ],
+    "input_text": "USC ka location tempting hai but tuition dekh ke shock lag raha hai.",
+    "reference_hindi": "USC का स्थान आकर्षक है, लेकिन tuition देखकर झटका लग रहा है।"
+  },
+  {
+    "id": "hn12",
+    "tags": [
+      "code_mixed",
+      "assistantship"
+    ],
+    "input_text": "TA confirm nahi hua to pura budget hil jayega.",
+    "reference_hindi": "यदि TA पक्का नहीं हुआ, तो पूरा बजट बिगड़ जाएगा।"
+  },
+  {
+    "id": "hn13",
+    "tags": [
+      "code_mixed",
+      "sop"
+    ],
+    "input_text": "SOP generic lag raha hai, usme fit ka angle aur strong banana hai.",
+    "reference_hindi": "SOP सामान्य लग रहा है; उसमें fit का पक्ष और मजबूत बनाना होगा।"
+  },
+  {
+    "id": "hn14",
+    "tags": [
+      "code_mixed",
+      "international"
+    ],
+    "input_text": "International applicants ke liye visa aur funds dono headache ban rahe hain.",
+    "reference_hindi": "अंतरराष्ट्रीय आवेदकों के लिए वीजा और धन दोनों ही बड़ी चिंता बन रहे हैं।"
+  },
+  {
+    "id": "hn15",
+    "tags": [
+      "code_mixed",
+      "cv"
+    ],
+    "input_text": "CV theek hai but publications na hone se profile weak feel ho rahi hai.",
+    "reference_hindi": "CV ठीक है, लेकिन प्रकाशन न होने से प्रोफाइल कमजोर लग रही है।"
+  },
+  {
+    "id": "hn16",
+    "tags": [
+      "code_mixed",
+      "community_support"
+    ],
+    "input_text": "Comments padh ke thoda better feel hua ki sirf mere saath hi aisa nahi ho raha.",
+    "reference_hindi": "टिप्पणियां पढ़कर थोड़ा बेहतर लगा कि ऐसा सिर्फ मेरे साथ ही नहीं हो रहा।"
+  },
+  {
+    "id": "hn17",
+    "tags": [
+      "code_mixed",
+      "timeline"
+    ],
+    "input_text": "Interview ho gaya but abhi tak koi update nahi, pura limbo chal raha hai.",
+    "reference_hindi": "इंटरव्यू हो चुका है, लेकिन अभी तक कोई अपडेट नहीं है; पूरी स्थिति अधर में है।"
+  },
+  {
+    "id": "hn18",
+    "tags": [
+      "code_mixed",
+      "masters_to_phd"
+    ],
+    "input_text": "Shayad pehle masters karke profile build karna smarter move hoga.",
+    "reference_hindi": "शायद पहले मास्टर्स करके प्रोफाइल बनाना अधिक समझदारी भरा कदम होगा।"
+  },
+  {
+    "id": "hn19",
+    "tags": [
+      "code_mixed",
+      "named_entity"
+    ],
+    "input_text": "CMU dream hai, par mera undergrad college itna known nahi hai.",
+    "reference_hindi": "CMU मेरा सपना है, लेकिन मेरा स्नातक कॉलेज इतना प्रसिद्ध नहीं है।"
+  },
+  {
+    "id": "hn20",
+    "tags": [
+      "code_mixed",
+      "slang"
+    ],
+    "input_text": "Portal abhi bhi ghost kar raha hai, so I am trying not to spiral.",
+    "reference_hindi": "पोर्टल अभी भी कोई जवाब नहीं दे रहा है, इसलिए मैं कोशिश कर रहा हूं कि घबराहट में न फंसूं।"
+  }
+]

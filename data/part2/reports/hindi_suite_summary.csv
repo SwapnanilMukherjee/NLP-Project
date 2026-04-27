@@ -1,0 +1,9 @@
+provider,model,task,task_label,n,chrf,multilingual_bertscore_f1,manual_fluency_1_to_5,manual_adequacy_1_to_5
+gemini,gemini-2.5-flash,code_mixed_normalization,Extra: Hinglish to Clean Hindi,20,0.27511233690898595,0.9876985637300308,1.0,1.0
+gemini,gemini-2.5-flash,cross_lingual_qa,Cross-lingual QA,20,0.14771189273309288,0.9840581741882464,1.0,1.0
+gemini,gemini-2.5-flash,summarization,Summarisation,20,0.11160891676463829,0.9838283053156476,1.0,1.0
+gemini,gemini-2.5-flash,translation,Translation,24,0.2971740432963108,0.9886444685834777,1.0,1.0
+groq,llama-3.3-70b-versatile,code_mixed_normalization,Extra: Hinglish to Clean Hindi,20,0.6216186958629695,0.9934378626762456,4.0,3.0
+groq,llama-3.3-70b-versatile,cross_lingual_qa,Cross-lingual QA,20,0.3167241804346098,0.9860272298613287,4.0,3.0
+groq,llama-3.3-70b-versatile,summarization,Summarisation,20,0.2949067089044124,0.9856225065875337,4.0,2.0
+groq,llama-3.3-70b-versatile,translation,Translation,24,0.6295646243916377,0.9939259134399839,4.0,4.5

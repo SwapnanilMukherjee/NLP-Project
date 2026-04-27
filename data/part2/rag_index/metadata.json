@@ -1,0 +1,11 @@
+{
+  "status": "created",
+  "subreddit": "gradadmissions",
+  "document_count": 111576,
+  "embedding_model": "BAAI/bge-base-en-v1.5",
+  "embedding_dim": 768,
+  "include_comments": true,
+  "limit": null,
+  "chunk_words": 180,
+  "chunk_overlap_words": 40
+}

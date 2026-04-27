@@ -1,0 +1,186 @@
+[
+  {
+    "id": "hs01",
+    "tags": [
+      "phd",
+      "research_fit"
+    ],
+    "prompt_hi": "PhD प्रवेश में research fit और profile strength पर चर्चा का 2-4 वाक्यों में हिंदी सार लिखिए।",
+    "retrieval_query_en": "research fit profile strength PhD admissions",
+    "reference_hindi": "चर्चा में research fit को बहुत महत्व दिया गया है। उपयोगकर्ता मानते हैं कि शोध अनुभव, उपयुक्त faculty match और मजबूत recommendation letters मिलकर PhD आवेदन को अधिक विश्वसनीय बनाते हैं, जबकि GPA अकेला निर्णायक कारक नहीं होता।"
+  },
+  {
+    "id": "hs02",
+    "tags": [
+      "low_gpa"
+    ],
+    "prompt_hi": "कम GPA वाले आवेदनों पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "low GPA application mitigation research letters context",
+    "reference_hindi": "कम GPA को चुनौती माना जाता है, लेकिन उपयोगकर्ता यह भी कहते हैं कि अच्छा शोध अनुभव, मजबूत letters और स्पष्ट संदर्भ स्थिति को बेहतर बना सकते हैं। कुल मिलाकर सलाह यह है कि प्रोफाइल के बाकी हिस्सों को मजबूत करके आवेदन को संतुलित बनाया जाए।"
+  },
+  {
+    "id": "hs03",
+    "tags": [
+      "sop"
+    ],
+    "prompt_hi": "SOP और personal statement पर होने वाली चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "SOP personal statement fit generic writing",
+    "reference_hindi": "लोगों के अनुसार SOP को generic नहीं होना चाहिए। उसमें applicant का शोध या शैक्षणिक लक्ष्य, program fit और स्पष्ट motivation दिखना चाहिए, जबकि अनावश्यक नाम-गिनती या अस्पष्ट दावों से बचना बेहतर माना जाता है।"
+  },
+  {
+    "id": "hs04",
+    "tags": [
+      "letters"
+    ],
+    "prompt_hi": "recommendation letters पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "recommendation letters strong recommender generic letters",
+    "reference_hindi": "Recommendation letters को खासकर PhD आवेदन में एक प्रमुख कारक माना जाता है। उपयोगकर्ता मजबूत, व्यक्तिगत और विश्वसनीय letters को महत्व देते हैं, जबकि बहुत सामान्य पत्र प्रोफाइल को कमजोर कर सकते हैं।"
+  },
+  {
+    "id": "hs05",
+    "tags": [
+      "professors",
+      "email"
+    ],
+    "prompt_hi": "आवेदन से पहले प्रोफेसरों को ईमेल करने पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "email professors before applying concise field dependent research fit",
+    "reference_hindi": "चर्चा में यह राय मिलती है कि प्रोफेसरों को ईमेल करना कुछ क्षेत्रों में उपयोगी हो सकता है, खासकर शोध-आधारित PhD आवेदन में। लेकिन ईमेल संक्षिप्त, विनम्र और वास्तविक research fit पर आधारित होना चाहिए; इसे हर जगह आवश्यक नहीं माना जाता।"
+  },
+  {
+    "id": "hs06",
+    "tags": [
+      "interview"
+    ],
+    "prompt_hi": "इंटरव्यू तैयारी और अनुभव पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "interview preparation discuss projects fit advisor questions",
+    "reference_hindi": "उपयोगकर्ता इंटरव्यू के लिए अपने शोध अनुभव को स्पष्ट रूप से समझाने, faculty fit बताने और सोच-समझकर सवाल पूछने की सलाह देते हैं। इंटरव्यू को केवल जांच नहीं, बल्कि mutual fit समझने की प्रक्रिया भी माना जाता है।"
+  },
+  {
+    "id": "hs07",
+    "tags": [
+      "gradcafe",
+      "waiting"
+    ],
+    "prompt_hi": "GradCafe और निर्णय का इंतजार करने से जुड़ी चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "GradCafe waiting decisions anxiety portal updates",
+    "reference_hindi": "GradCafe को निर्णयों की जानकारी पाने के लिए उपयोगी माना जाता है, लेकिन कई उपयोगकर्ताओं के लिए यह चिंता भी बढ़ाता है। लोग बार-बार अपडेट देखने से तनाव बढ़ने और अधूरी जानकारी के आधार पर अनुमान लगाने की समस्या का उल्लेख करते हैं।"
+  },
+  {
+    "id": "hs08",
+    "tags": [
+      "rejection"
+    ],
+    "prompt_hi": "रिजेक्शन और उससे निपटने पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "rejection coping not personal keep perspective remaining options",
+    "reference_hindi": "रिजेक्शन के बाद उपयोगकर्ता निराशा, आत्म-संदेह और थकान की बात करते हैं। जवाब देने वाले अक्सर यह समझाते हैं कि रिजेक्शन व्यक्ति की कीमत तय नहीं करता और बाकी विकल्पों या अगले चक्र पर ध्यान देना चाहिए।"
+  },
+  {
+    "id": "hs09",
+    "tags": [
+      "waitlist"
+    ],
+    "prompt_hi": "वेटलिस्ट और देर से आने वाले निर्णयों पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "waitlist delayed decisions accept another offer uncertainty",
+    "reference_hindi": "वेटलिस्ट की चर्चा में अनिश्चितता प्रमुख है। लोग यह समझने की कोशिश करते हैं कि दूसरी offer कब स्वीकार करनी चाहिए और वेटलिस्ट पर बने रहने का व्यावहारिक मतलब क्या है।"
+  },
+  {
+    "id": "hs10",
+    "tags": [
+      "funding"
+    ],
+    "prompt_hi": "फंडिंग, assistantship और affordability पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "funding assistantship affordability tuition scholarship TA RA",
+    "reference_hindi": "फंडिंग को कई उपयोगकर्ता निर्णय का केंद्रीय हिस्सा मानते हैं। चर्चा में assistantship, scholarship, tuition burden और वास्तविक affordability की तुलना की जाती है, खासकर उन कार्यक्रमों में जहां लागत बहुत अधिक है।"
+  },
+  {
+    "id": "hs11",
+    "tags": [
+      "unfunded_masters"
+    ],
+    "prompt_hi": "बिना फंडिंग वाले मास्टर्स ऑफरों पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "unfunded masters offer debt worth cost return on investment",
+    "reference_hindi": "बिना फंडिंग वाले मास्टर्स ऑफरों को लेकर बातचीत सावधान है। कई उपयोगकर्ता ऐसे ऑफरों की उपयोगिता को लागत, कर्ज और भविष्य के career payoff के संदर्भ में तौलने की सलाह देते हैं।"
+  },
+  {
+    "id": "hs12",
+    "tags": [
+      "masters_to_phd"
+    ],
+    "prompt_hi": "मास्टर्स के बाद PhD करने की रणनीति पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "masters before PhD bridge research experience strategy",
+    "reference_hindi": "कुछ लोगों के लिए मास्टर्स को PhD से पहले प्रोफाइल सुधारने और शोध अनुभव बढ़ाने का रास्ता माना जाता है। फिर भी यह धारणा सार्वभौमिक नहीं है और लोग लागत तथा उद्देश्य के आधार पर निर्णय लेने की सलाह देते हैं।"
+  },
+  {
+    "id": "hs13",
+    "tags": [
+      "program_selection"
+    ],
+    "prompt_hi": "प्रोग्राम चुनने के मानदंडों पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "choose program fit reputation cost location advisor outcomes",
+    "reference_hindi": "प्रोग्राम चयन में fit, funding, location, advisor, reputation और career outcomes को साथ देखकर निर्णय लेने की बात की जाती है। चर्चा यह भी बताती है कि prestige अकेला पर्याप्त कारण नहीं होना चाहिए।"
+  },
+  {
+    "id": "hs14",
+    "tags": [
+      "international"
+    ],
+    "prompt_hi": "अंतरराष्ट्रीय आवेदकों की चिंताओं पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "international applicants visa finances funding evaluation credentials",
+    "reference_hindi": "अंतरराष्ट्रीय आवेदकों की चर्चा में वीजा, वित्तीय प्रमाण, फंडिंग और विदेशी डिग्री के मूल्यांकन की चिंता बार-बार आती है। लागत और समय-सीमा का दबाव उनकी निर्णय प्रक्रिया को और जटिल बनाता है।"
+  },
+  {
+    "id": "hs15",
+    "tags": [
+      "missing_materials"
+    ],
+    "prompt_hi": "पोर्टल में missing materials या देरी से पहुंचे दस्तावेजों पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "portal missing transcript delayed letters contact department",
+    "reference_hindi": "जब पोर्टल कोई दस्तावेज गायब दिखाता है, तो उपयोगकर्ता पहले स्थिति की जांच और फिर विभाग से विनम्र संपर्क की सलाह देते हैं। चर्चा में यह भी दिखता है कि तकनीकी देरी से अनावश्यक तनाव पैदा होता है।"
+  },
+  {
+    "id": "hs16",
+    "tags": [
+      "multiple_admits"
+    ],
+    "prompt_hi": "कई admissions मिलने पर अंतिम निर्णय की चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "multiple admits final decision funding fit advisor location",
+    "reference_hindi": "कई admissions मिलने पर लोग funding, fit, advisor, city और career goals की तुलना करते हैं। सलाह यह रहती है कि केवल नाम या prestige नहीं, बल्कि दीर्घकालिक उपयोगिता को प्राथमिकता दी जाए।"
+  },
+  {
+    "id": "hs17",
+    "tags": [
+      "scholarship"
+    ],
+    "prompt_hi": "scholarship और assistantship अनिश्चितता पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "scholarship assistantship not guaranteed uncertainty August TA assignment",
+    "reference_hindi": "कई पोस्ट यह दिखाती हैं कि scholarship या TA/RA support हमेशा निश्चित नहीं होता। उपयोगकर्ता इस अनिश्चितता को महत्वपूर्ण जोखिम मानते हैं, खासकर तब जब tuition पहले से बहुत अधिक हो।"
+  },
+  {
+    "id": "hs18",
+    "tags": [
+      "mscs"
+    ],
+    "prompt_hi": "MSCS और अन्य मास्टर्स प्रोग्रामों की लागत बनाम परिणाम पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "MSCS cost job outcomes worth tuition",
+    "reference_hindi": "MSCS और समान कार्यक्रमों की चर्चा में लागत और career outcomes का संतुलन प्रमुख मुद्दा है। उपयोगकर्ता पूछते हैं कि क्या महंगा प्रोग्राम सचमुच बेहतर अवसर देगा या कम लागत वाला विकल्प अधिक समझदारी भरा है।"
+  },
+  {
+    "id": "hs19",
+    "tags": [
+      "cv",
+      "profile_review"
+    ],
+    "prompt_hi": "CV और profile review पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "CV profile review strength weaknesses ambitious list",
+    "reference_hindi": "Profile review चर्चाओं में लोग CV, research, GPA और school list के बीच संतुलन देखते हैं। प्रतिक्रिया अक्सर यथार्थवादी self-assessment और लक्ष्य सूची को दोबारा सोचने पर जोर देती है।"
+  },
+  {
+    "id": "hs20",
+    "tags": [
+      "community_support"
+    ],
+    "prompt_hi": "समुदाय द्वारा दिए जाने वाले समर्थन और reassurance पर चर्चा का हिंदी सार लिखिए।",
+    "retrieval_query_en": "community support reassurance rejection waiting admissions anxiety",
+    "reference_hindi": "हालांकि सबरेडिट में चिंता बहुत दिखाई देती है, समुदाय का सहायक पक्ष भी मजबूत है। लोग एक-दूसरे को धैर्य रखने, आत्म-मूल्य को admissions से अलग देखने और लंबे इंतजार के दौरान संतुलित रहने के लिए प्रोत्साहित करते हैं।"
+  }
+]
