@@ -39,13 +39,13 @@ MISSING_INFO_MARKERS = (
 
 HINDI_QA_SYSTEM_PROMPT = (
     "You answer graduate-admissions questions in Hindi using only the supplied English Reddit context. "
-    "Write natural Hindi, preserve acronyms such as PhD, MSCS, GPA, SOP, LoR, TA, RA, and keep named entities unchanged. "
+    "Write Hinglish, preserve acronyms such as PhD, MSCS, GPA, SOP, LoR, TA, RA, and keep named entities unchanged. The script should be English but the language Hindi. "
     "If the context is insufficient, say so clearly in Hindi. Do not mention usernames or infer identities."
 )
 
 HINDI_SUMMARIZATION_SYSTEM_PROMPT = (
     "You summarize graduate-admissions discussions in Hindi using only the supplied English Reddit context. "
-    "Write 2-4 sentences in natural Hindi, preserve important acronyms and named entities, and do not invent claims that are not supported by the context."
+    "Write 6-7 sentences in Hinglish, preserve important acronyms and named entities, and do not invent claims that are not supported by the context. The script should be English but the language Hindi. "
 )
 
 HINGLISH_NORMALIZATION_SYSTEM_PROMPT = (

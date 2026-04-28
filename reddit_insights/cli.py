@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 
 from reddit_insights.analysis import run_analysis
+from reddit_insights.corpus_qa import answer_query, build_post_meta_cache
 from reddit_insights.config import settings
 from reddit_insights.db import SessionLocal, engine
 from reddit_insights.ingest import import_comments_jsonl, import_posts_jsonl, scrape_subreddit
@@ -16,7 +17,8 @@ from reddit_insights.part2_eval import (
     write_ethics_note,
     write_part2_report,
 )
-from reddit_insights.rag import RagIndex, answer_question, build_rag_index
+from reddit_insights.report_tex import write_final_project_report_tex
+from reddit_insights.rag import RagIndex, build_rag_index
 
 
 
@@ -76,15 +78,27 @@ def cmd_part2_build_index(args: argparse.Namespace) -> None:
     print(summary)
 
 
+def cmd_part2_build_meta_cache(args: argparse.Namespace) -> None:
+    print(build_post_meta_cache(force=args.force))
+
+
 def cmd_part2_ask(args: argparse.Namespace) -> None:
     provider = build_provider(args.provider)
-    index = RagIndex()
-    result = answer_question(provider, args.query, index=index, top_k=args.top_k)
+    result = answer_query(args.query, provider=provider, top_k=args.top_k)
+    print(f"Mode: {result.mode}")
     print(result.answer)
-    print("\nSources:")
-    for item in result.retrieved:
-        doc = item.document
-        print(f"[{item.rank}] {doc.source_type} {doc.source_id} score={item.score:.3f} topic={doc.topic_label} title={doc.title[:120]}")
+    if result.meta:
+        print("\nMatched example posts:")
+        for example in result.meta.examples:
+            print(
+                f"- post_id={example.post_id} score={example.score} topic={example.topic_index} "
+                f"title={example.title[:120]}"
+            )
+    if result.rag:
+        print("\nSources:")
+        for item in result.rag.retrieved:
+            doc = item.document
+            print(f"[{item.rank}] {doc.source_type} {doc.source_id} score={item.score:.3f} topic={doc.topic_label} title={doc.title[:120]}")
 
 
 def cmd_part2_evaluate_qa(args: argparse.Namespace) -> None:
@@ -122,6 +136,10 @@ def cmd_part2_report(_: argparse.Namespace) -> None:
     print(str(write_part2_report()))
 
 
+def cmd_final_report_tex(_: argparse.Namespace) -> None:
+    print(str(write_final_project_report_tex()))
+
+
 def cmd_part2_run_all(args: argparse.Namespace) -> None:
     ensure_part2_eval_files(overwrite=False)
     with SessionLocal() as session:
@@ -147,6 +165,7 @@ def cmd_part2_run_all(args: argparse.Namespace) -> None:
     )
     bias_path = write_bias_note(provider_name_list=args.providers, top_k=args.top_k)
     report_path = write_part2_report()
+    latex_report_path = write_final_project_report_tex()
     print(
         {
             "index": index_summary,
@@ -155,6 +174,7 @@ def cmd_part2_run_all(args: argparse.Namespace) -> None:
             "bias": str(bias_path),
             "ethics": str(ethics_path),
             "report": str(report_path),
+            "latex_report": str(latex_report_path),
         }
     )
 
@@ -199,6 +219,10 @@ def build_parser() -> argparse.ArgumentParser:
     part2_index.add_argument("--force", action="store_true", help="Rebuild even if an index already exists")
     part2_index.set_defaults(func=cmd_part2_build_index)
 
+    part2_meta = subparsers.add_parser("part2-build-meta-cache", help="Build the cached post-level metadata and embeddings for corpus analytics")
+    part2_meta.add_argument("--force", action="store_true", help="Rebuild the cached post metadata and embeddings")
+    part2_meta.set_defaults(func=cmd_part2_build_meta_cache)
+
     part2_ask = subparsers.add_parser("part2-ask", help="Ask a RAG question using one API provider")
     part2_ask.add_argument("--provider", choices=["groq", "gemini"], default="groq")
     part2_ask.add_argument("--query", required=True)
@@ -235,6 +259,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     part2_report = subparsers.add_parser("part2-report", help="Combine generated Part 2 sections into one markdown report")
     part2_report.set_defaults(func=cmd_part2_report)
+
+    final_report = subparsers.add_parser("final-report-tex", help="Generate the unified Part 1 + Part 2 LaTeX report for Overleaf")
+    final_report.set_defaults(func=cmd_final_report_tex)
 
     part2_all = subparsers.add_parser("part2-run-all", help="Build index and run all Part 2 API evaluations and notes")
     part2_all.add_argument("--subreddit", default=settings.subreddit_name)

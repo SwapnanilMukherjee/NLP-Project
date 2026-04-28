@@ -1,0 +1,27 @@
+{
+  "status": "created",
+  "row_count": 27219,
+  "embedding_model": "BAAI/bge-base-en-v1.5",
+  "embedding_dim": 768,
+  "tag_columns": [
+    "tag_admit",
+    "tag_assistantship",
+    "tag_funding",
+    "tag_interview",
+    "tag_lor",
+    "tag_profile_review",
+    "tag_reject",
+    "tag_scholarship",
+    "tag_sop",
+    "tag_tuition_cost",
+    "tag_visa_international",
+    "tag_waitlist"
+  ],
+  "region_columns": [
+    "region_asia",
+    "region_canada",
+    "region_europe",
+    "region_us"
+  ],
+  "source": "/home/swapnanil_mukherjee/nlp_project/data/artifacts/posts_with_topics.parquet"
+}
