@@ -1,3 +1,2 @@
 provider,model,n,chrf,multilingual_bertscore_f1,manual_fluency_1_to_5,manual_adequacy_1_to_5
-gemini,gemini-2.5-flash,84,0.21215285675292622,0.9861805727462138,1.0,1.0
-groq,llama-3.3-70b-versatile,84,0.4735064605885612,0.9899520702983546,4.0,3.4
+gemini,gemini-2.5-flash,84,0.20267478585841608,0.9858811234657681,1.0,1.0

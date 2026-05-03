@@ -314,7 +314,7 @@ def answer_question(
     question: str,
     index: RagIndex | None = None,
     top_k: int | None = None,
-    max_tokens: int = 512,
+    max_tokens: int = 1024,
     temperature: float = 0.0,
 ) -> RAGAnswer:
     rag_index = index or RagIndex()

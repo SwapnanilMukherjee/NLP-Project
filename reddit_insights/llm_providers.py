@@ -108,7 +108,7 @@ class GeminiProvider(ChatProvider):
         self,
         system_prompt: str,
         user_prompt: str,
-        max_tokens: int = 512,
+        max_tokens: int = 2048,
         temperature: float = 0.0,
     ) -> LLMResponse:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent?key={self.api_key}"
